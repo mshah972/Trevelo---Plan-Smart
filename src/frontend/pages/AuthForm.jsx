@@ -29,8 +29,8 @@ export default function AuthForm({type = "signup"}) {
                     <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-12 gap-6">
                         {/* LEFT: form (7/12 on xl) */}
                         <div className={"xl:col-span-8 flex flex-col items-center"}>
-                            <div className={"flex flex-col justify-center items-center p-4 min-w-full min-h-[90vh]"}>
-                                <div className={"flex flex-col gap-6 items-start w-[450px] lg:w-[500px]"}>
+                            <div className={"flex flex-col justify-center items-center p-6 lg:p-4 min-w-full min-h-[90vh]"}>
+                                <div className={"flex flex-col gap-6 items-start max-w-md lg:w-[500px]"}>
                                     {/* Logo Placeholder */}
                                     <div className="mb-2">
                                         <div className="relative rounded-full">
