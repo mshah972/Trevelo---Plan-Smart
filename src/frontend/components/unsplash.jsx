@@ -10,10 +10,24 @@ const PhotoComp = ({ photo }) => {
 
     return (
         <Fragment>
-            <div className={"flex flex-col gap-2"}>
-                <a href={`${urls.regular}`} target={"_blank"}><img className={"img rounded-4xl max-w-2xl h-[900px] object-cover"} src={urls.regular} /></a>
-                <p className={"font-light text-xs"}>(Photo by <a className={"credit"} target={"_blank"} href={`https://unsplash.com/@${user.username}`}>{user.username}</a> on <a className={"credit"} target={"_blank"} href={"https://unsplash.com"}>Unsplash</a>)</p>
-            </div>
+            <figure className={"flex flex-col h-full w-full overflow-hidden"}>
+                    <img
+                        src={urls.regular}
+                        alt={`Photo by ${user?.username || "photographer"} on Unsplash`}
+                        className="block h-full w-full object-cover"
+                    />
+                <figcaption className="px-4 py-3 text-center font-light text-[10px] text-white/70 text-shadow-xs text-shadow-neutral-500/20 tracking-wide">
+                    (Photo by{" "}
+                    <a className="text-text-secondary hover:text-warning" target="_blank" href={`https://unsplash.com/@${user.username}?utm_source=travel_mate&utm_medium=referral`}>
+                        {user.username}
+                    </a>{" "}
+                    on{" "}
+                    <a className="text-text-secondary hover:text-warning" target="_blank" href="https://unsplash.com?utm_source=travel_mate&utm_medium=referral">
+                        Unsplash
+                    </a>
+                    )
+            </figcaption>
+            </figure>
         </Fragment>
     );
 };
@@ -23,7 +37,7 @@ const UnsplashComponent = () => {
 
     useEffect(() => {
         unsplash.photos
-            .getRandom({ query: 'Travel', orientation: 'portrait', count: 1})
+            .getRandom({ query: 'travel, city, airplane, adventure, vacation, skyline', orientation: 'portrait', count: 1})
             .then((result) => {
                 setPhotoResponse(result);
             })
@@ -33,7 +47,7 @@ const UnsplashComponent = () => {
     }, []);
 
     if (data === null) {
-        return <div className={"rounded-4xl bg-neutral-700 animate-pulse min-w-3xl min-h-screen"}></div>;
+        return <div className={"rounded-md bg-muted animate-pulse max-w-xl min-h-screen"}></div>;
     } else if (data.errors) {
         return (
             <div>
@@ -43,7 +57,7 @@ const UnsplashComponent = () => {
         );
     } else {
         return (
-          <div className={"photo"}>
+          <div className={"h-full w-full"}>
               <PhotoComp photo={data.response[0]} />
           </div>
         );

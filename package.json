@@ -10,13 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@material-design-icons/svg": "^0.14.15",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
     "@tailwindcss/vite": "^4.1.14",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "firebase": "^12.3.0",
+    "motion": "^12.23.22",
     "openai": "^6.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.3",
     "tailwindcss": "^4.1.14",
     "unsplash-js": "^7.0.20",
     "zod": "^4.1.11"
