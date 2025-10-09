@@ -24,12 +24,12 @@ export default function AuthForm({type = "signup"}) {
     return (
         <>
             <div className={"min-h-screen mx-auto"}>
-                <div className="">
+                <div className="px-4 py-4">
                     {/* GRID: form + (xl) photo */}
                     <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-12 gap-6">
                         {/* LEFT: form (7/12 on xl) */}
                         <div className={"xl:col-span-8 flex flex-col items-center"}>
-                            <div className={"flex flex-col justify-center items-center p-6 lg:p-4 min-w-full min-h-[90vh]"}>
+                            <div className={"flex flex-col justify-center items-center min-w-full min-h-[90vh]"}>
                                 <div className={"flex flex-col gap-6 items-start max-w-md lg:w-[500px]"}>
                                     {/* Logo Placeholder */}
                                     <div className="mb-2">
@@ -140,7 +140,7 @@ export default function AuthForm({type = "signup"}) {
                             </div>
 
                             {/*/!* Legal *!/*/}
-                            <div className="mt-8 px-4 flex items-center justify-between text-[8px] lg:text-[12px] text-text-secondary w-full">
+                            <div className="mt-8 mb-8 px-4 flex items-center justify-between text-[7px] sm:text-[8px] lg:text-[12px] text-text-secondary w-full">
                                 <span>&copy; 2025 Trevelo Inc. All right reserved.</span>
 
                                 <div className="flex space-x-1">
