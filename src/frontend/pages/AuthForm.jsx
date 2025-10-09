@@ -144,7 +144,6 @@ export default function AuthForm({type = "signup"}) {
                                 <span>&copy; 2025 Trevelo Inc. All right reserved.</span>
 
                                 <div className="flex space-x-1">
-                                    <span className={type === "signup" ? "block" : "hidden"}>By signing up, you agree to our</span>
                                     <a href="/privacy" className="hover:text-warning">Privacy Policy</a>
                                     <span>·</span>
                                     <a href="/terms" className="hover:text-warning">Terms &amp; Conditions</a>
