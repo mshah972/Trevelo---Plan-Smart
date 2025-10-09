@@ -23,7 +23,7 @@ export default function AuthForm({type = "signup"}) {
 
     return (
         <>
-            <div className={"w-full min-h-screen p-4"}>
+            <div className={"min-h-screen mx-auto p-4"}>
                 <div className="">
                     {/* GRID: form + (xl) photo */}
                     <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-12 gap-6">
