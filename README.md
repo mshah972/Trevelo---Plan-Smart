@@ -1,5 +1,5 @@
-# TravelMate – AI-Powered Group Trip Planner
-TravelMate is a collaborative web application designed to simplify the process of planning group trips. It empowers users to co-create the perfect vacation by leveraging AI to generate personalized itinerary suggestions based on everyone's input. Groups can then vote on their favorite plan, ensuring a democratic and enjoyable planning experience for all.
+# Trevelo – Plan Smart. Travel Together
+Trevelo is a collaborative web application designed to simplify the process of planning group trips. It empowers users to co-create the perfect vacation by leveraging AI to generate personalized itinerary suggestions based on everyone's input. Groups can then vote on their favorite plan, ensuring a democratic and enjoyable planning experience for all.
 
 Live Demo: (coming soon)
 
