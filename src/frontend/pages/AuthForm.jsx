@@ -140,7 +140,7 @@ export default function AuthForm({type = "signup"}) {
                             </div>
 
                             {/*/!* Legal *!/*/}
-                            <div className="mt-8 mb-8 px-4 flex items-center justify-between text-[7px] sm:text-[8px] lg:text-[12px] text-text-secondary w-full">
+                            <div className="mt-8 mb-8 flex items-center justify-between text-[7px] sm:text-[8px] lg:text-[12px] text-text-secondary w-full">
                                 <span>&copy; 2025 Trevelo Inc. All right reserved.</span>
 
                                 <div className="flex space-x-1">
