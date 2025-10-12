@@ -50,9 +50,9 @@ export default function HomePage() {
                                 className="flex flex-col w-full items-center gap-2 pt-4 pb-7 text-center"
                             >
                                 <div
-                                    className="relative rounded-full flex justify-center items-center bg-[conic-gradient(from_var(--border-angle),red,orange,yellow,green,blue,indigo,violet,red)] p-px w-[65px] h-[65px] animate-rotate-border">
+                                    className="relative rounded-full flex justify-center items-center bg-[conic-gradient(from_var(--border-angle),red,orange,yellow,green,blue,indigo,violet,red)] p-px w-[65px] h-[65px] animate-rotate-border shadow-lg shadow-white/10">
                                     <div
-                                        className="bg-muted rounded-full w-full h-full flex justify-center items-center overflow-hidden p-3.5">
+                                        className="bg-muted rounded-full w-full h-full flex justify-center items-center overflow-hidden p-3.5 inset-shadow-sm inset-shadow-white/10">
                                         <img src={logoURL} className="w-full h-full object-contain -ml-0.5 mt-0.5"
                                              alt="Logo"/>
                                     </div>
@@ -64,7 +64,7 @@ export default function HomePage() {
                                         initial={{opacity: 0, y: 20}}
                                         animate={{opacity: 1, y: 0}}
                                         transition={{duration: 0.7, delay: 0.3}}
-                                        className="leading-8 font-normal text-2xl lg:text-3xl"
+                                        className="leading-8 font-normal text-2xl lg:text-3xl text-shadow-sm text-shadow-neutral-300/20"
                                     >
                                         Ready to explore the world?
                                     </motion.h1>
