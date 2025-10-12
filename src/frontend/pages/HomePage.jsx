@@ -32,7 +32,7 @@ export default function HomePage() {
             <div className={"relative w-full min-h-svh"}>
                 <Button
                     size={"default"}
-                    className={"group absolute top-5 right-8 z-50 rounded-full bg-transparent ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black transition duration-300"}
+                    className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black transition duration-300"}
                     onClick={""}
                     type="submit"
                 >
