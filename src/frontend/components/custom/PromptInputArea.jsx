@@ -12,9 +12,7 @@ export const PromptInputArea = ({
     onSubmit,
 }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [input, setInput] = useState(
-        "Plan a 6-day adventure trip to Barcelona for 3 friends in October. Include hiking in Montserrat, a bike tour of the city, and a day for exploring Gothic Quarter. Budget-friendly options preferred."
-    );
+    const [input, setInput] = useState("");
 
     const handleSubmit = async () => {
         if (input.trim()) {
@@ -45,9 +43,10 @@ export const PromptInputArea = ({
                             backgroundColor: 'transparent',
                         }}
                         className={"flex field-sizing-content max-h-[120px] md:max-h-[200px] w-full rounded-xl px-4 py-3 leading-relaxed text-white placeholder:text-text-secondary focus-visible:outline-none [resize:none] shadow-none border-none focus-visible:ring-0"}
-                        placeholder={"Ask me anything about your trip..."}
+                        placeholder={"Where are you planning to go next?..."}
                         aria-label={"Enter your prompt"}
                     />
+
                     <div className={"flex justify-end px-3 py-2"}>
                         <Button
                             size={"lg"}

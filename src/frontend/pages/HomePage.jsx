@@ -35,7 +35,6 @@ export default function HomePage() {
                     onClick={""}
                     type="submit"
                 >
-                    {/*<p className={"group-hover:text-black text-red-300"}>Logout</p> */}
                     <LogOut color={"red"} className={"w-[16px] h-[16px]"}/>
                 </button>
 
@@ -59,12 +58,12 @@ export default function HomePage() {
                                 </div>
 
 
-                                <div className={"flex flex-col w-full items-center gap-6 pt-4 text-center"}>
+                                <div className={"flex flex-col w-full items-center gap-2 pt-4 text-center"}>
                                     <motion.h1
                                         initial={{opacity: 0, y: 20}}
                                         animate={{opacity: 1, y: 0}}
                                         transition={{duration: 0.7, delay: 0.3}}
-                                        className="leading-8 font-normal text-2xl lg:text-3xl text-shadow-sm text-shadow-neutral-300/20"
+                                        className="leading-8 font-normal text-2xl lg:text-3xl"
                                     >
                                         Ready to explore the world?
                                     </motion.h1>
@@ -72,7 +71,7 @@ export default function HomePage() {
                                         initial={{opacity: 0, y: 20}}
                                         animate={{opacity: 1, y: 0}}
                                         transition={{duration: 0.7, delay: 0.45}}
-                                        className="leading-6 font-light lg:text-lg"
+                                        className="leading-6 font-light lg:text-lg mt-4"
                                     >
                                         Let's plan your dream trip! ✨
                                     </motion.p>
@@ -103,6 +102,16 @@ export default function HomePage() {
                             className={"max-w-[752px] w-full px-2"}
                         />
                     </motion.div>
+                </div>
+                <div className={"absolute w-full bottom-0 left-0 hidden lg:flex justify-center"}>
+                    <motion.p
+                        initial={{opacity: 0, y: 20}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.7, delay: 0.45}}
+                        className="font-light text-[10px] text-text-secondary px-4 lg:px-10 text-center pb-6"
+                    >
+                        To get the best results when planning your trip with Trevelo, include key details in your prompt such as your destination, travel dates, and group size. Mention your budget preference (whether you’re looking for a low, mid, or high-cost trip) and describe the type of experiences you want, like adventure, relaxation, or cultural exploration. If you have any food restrictions, be sure to specify those too. The more information you provide—from interests to dietary needs—the more personalized and helpful your travel recommendations will be.
+                    </motion.p>
                 </div>
             </div>
         </>
