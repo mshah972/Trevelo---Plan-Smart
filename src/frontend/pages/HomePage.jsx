@@ -3,6 +3,7 @@ import {motion} from "motion/react";
 import {PromptInputArea} from "../components/custom/PromptInputArea.jsx";
 import {ArrowUp, Loader, LogOut} from "lucide-react";
 import {Button} from "../components/ui/Button.jsx";
+import {Subtitle} from "../components/ui/Subtitle.jsx";
 // import { useChat } from "../../hooks/use-chat.js";
 // import {
 //     ChatContainer,
@@ -30,13 +31,19 @@ export default function HomePage() {
     return (
         <>
             <div className={"relative w-full min-h-svh"}>
-                <button
-                    className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black transition duration-300 p-2"}
-                    onClick={""}
-                    type="submit"
+                <motion.div
+                    initial={{opacity:0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 0.7, delay: 1}}
                 >
-                    <LogOut color={"red"} className={"w-[16px] h-[16px]"}/>
-                </button>
+                    <button
+                        className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black hover:cursor-pointer transition duration-300 p-2"}
+                        onClick={""}
+                        type="submit"
+                    >
+                        <LogOut color={"red"} className={"w-[16px] h-[16px]"}/>
+                    </button>
+                </motion.div>
 
 
                 <div className={"flex flex-col w-full min-h-svh items-center gap-7 justify-center pb-24 lg:pb-4"}>
@@ -67,14 +74,7 @@ export default function HomePage() {
                                     >
                                         Ready to explore the world?
                                     </motion.h1>
-                                    <motion.p
-                                        initial={{opacity: 0, y: 20}}
-                                        animate={{opacity: 1, y: 0}}
-                                        transition={{duration: 0.7, delay: 0.45}}
-                                        className="leading-6 font-light lg:text-lg mt-4"
-                                    >
-                                        Let's plan your dream trip! ✨
-                                    </motion.p>
+                                    <Subtitle />
                                 </div>
                             </motion.div>
                         </>
