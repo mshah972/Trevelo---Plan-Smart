@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import UnsplashComponent from "../components/unsplash.jsx";
+import UnsplashComponent from "../../components/custom/unsplash.jsx";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import GoogleIcon from '@mui/icons-material/Google';
 import AppleIcon from '@mui/icons-material/Apple';
-import { signInWithGoogle, signInWithApple, signInWithEmail } from "../../backend/firebase.js";
+import { signInWithGoogle, signInWithApple, signInWithEmail } from "../../../backend/firebase.js";
 import {useNavigate} from "react-router-dom";
-import { setTitle, setSubTitle, setButtonText} from "../utils/authHelpers.js";
+import { setTitle, setSubTitle, setButtonText} from "../../utils/authHelpers.js";
 
 
 export default function AuthForm({type = "signup"}) {
