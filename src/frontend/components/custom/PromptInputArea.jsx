@@ -44,7 +44,7 @@ export const PromptInputArea = ({
                         style={{
                             backgroundColor: 'transparent',
                         }}
-                        className={"flex field-sizing-content max-h-[150px] md:max-h-[200px] w-full rounded-xl px-4 py-3 leading-relaxed text-white placeholder:text-text-secondary focus-visible:outline-none [resize:none] shadow-none border-none focus-visible:ring-0"}
+                        className={"flex field-sizing-content max-h-[200px] w-full rounded-xl px-4 py-3 leading-relaxed text-white placeholder:text-text-secondary focus-visible:outline-none [resize:none] shadow-none border-none focus-visible:ring-0"}
                         placeholder={"Ask me anything about your trip..."}
                         aria-label={"Enter your prompt"}
                     />

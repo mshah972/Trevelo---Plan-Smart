@@ -31,7 +31,6 @@ export default function HomePage() {
         <>
             <div className={"relative w-full min-h-svh"}>
                 <Button
-                    size={"default"}
                     className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black transition duration-300"}
                     onClick={""}
                     type="submit"
@@ -92,10 +91,16 @@ export default function HomePage() {
                     {/*    </div>*/}
                     {/*)}*/}
 
-                    <PromptInputArea
-                        onSubmit={""}
-                        className={"max-w-[752px] w-full px-2"}
-                    />
+                    <motion.div
+                        initial={{opacity: 0, y: -32}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.7, delay: 0.2}}
+                    >
+                        <PromptInputArea
+                            onSubmit={""}
+                            className={"max-w-[752px] w-full px-2"}
+                        />
+                    </motion.div>
                 </div>
             </div>
         </>
