@@ -75,6 +75,7 @@ export default function HomePage() {
                                     >
                                         Ready to explore the world?
                                     </motion.h1>
+
                                     <Subtitle />
                                 </div>
                             </motion.div>
@@ -104,7 +105,14 @@ export default function HomePage() {
                         />
                     </motion.div>
 
-                    <PromptTips />
+                    <motion.div
+                        initial={{opacity:0, y: 10}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.2, delay: 0.3}}
+                        className={"m-2"}
+                    >
+                        <PromptTips />
+                    </motion.div>
                 </div>
             </div>
         </>

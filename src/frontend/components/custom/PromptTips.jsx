@@ -8,7 +8,7 @@ export function PromptTips() {
     const [open, setOpen] = React.useState(false);
 
     return (
-        <div className="flex flex-col w-full max-w-[750px] mx-4 my-4 rounded-2xl bg-card shadow-shadow-2 backdrop-blur-md bg-elevated">
+        <div className="flex flex-col w-full max-w-[750px] rounded-2xl bg-card shadow-shadow-2 backdrop-blur-md bg-elevated">
             {/* Header: clickable to toggle */}
             <button
                 onClick={() => setOpen((v) => !v)}
