@@ -28,7 +28,7 @@ export function PromptTips() {
             </button>
 
             {/* Animated dropdown content */}
-            <AnimatePresence initial={false}>z
+            <AnimatePresence initial={false}>
                 {open && (
                     <motion.div
                         id="prompt-tips-content"
