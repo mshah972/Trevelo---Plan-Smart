@@ -30,13 +30,14 @@ export default function HomePage() {
     return (
         <>
             <div className={"relative w-full min-h-svh"}>
-                <Button
-                    className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black transition duration-300"}
+                <button
+                    className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black transition duration-300 p-2"}
                     onClick={""}
                     type="submit"
                 >
-                    <p className={"group-hover:text-black text-red-300"}>Logout</p> <LogOut color={"red"}/>
-                </Button>
+                    {/*<p className={"group-hover:text-black text-red-300"}>Logout</p> */}
+                    <LogOut color={"red"} className={"w-[16px] h-[16px]"}/>
+                </button>
 
 
                 <div className={"flex flex-col w-full min-h-svh items-center gap-7 justify-center pb-24 lg:pb-4"}>
