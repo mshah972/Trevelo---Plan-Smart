@@ -8,7 +8,7 @@ export function PromptTips() {
     const [open, setOpen] = React.useState(false);
 
     return (
-        <div className="flex flex-col w-full max-w-[750px] rounded-2xl bg-card shadow-shadow-2 backdrop-blur-md bg-elevated">
+        <div className="flex flex-col w-auto max-w-[750px] rounded-2xl bg-card shadow-shadow-2 backdrop-blur-md bg-elevated">
             {/* Header: clickable to toggle */}
             <button
                 onClick={() => setOpen((v) => !v)}
@@ -28,7 +28,7 @@ export function PromptTips() {
             </button>
 
             {/* Animated dropdown content */}
-            <AnimatePresence initial={false}>
+            <AnimatePresence initial={false}>z
                 {open && (
                     <motion.div
                         id="prompt-tips-content"
