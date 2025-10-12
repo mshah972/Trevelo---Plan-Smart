@@ -109,7 +109,7 @@ export default function HomePage() {
                         initial={{opacity: 0, y: 10}}
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: 0}}
-                        transition={{ type: "spring", bounce: 0.18, duration: 0.44 }}
+                        transition={{duration: 0.7, delay: 0.4}}
                         className="inline-block m-2"
                         layout
                     >
