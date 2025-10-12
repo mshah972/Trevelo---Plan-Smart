@@ -54,7 +54,7 @@ function Subtitle() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="leading-6 font-light text-text-secondary lg:text-lg mt-4 min-h-[30px]"
+                className="leading-6 font-light text-text-secondary text-md lg:text-lg mt-4 min-h-[30px]"
             >
                 {typed}
                 <span className="animate-pulse text-white">|</span>
