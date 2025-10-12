@@ -15,6 +15,7 @@ const subtitles = [
     "Let’s make your bucket list a reality 📝 ",
     "Find your next favorite place 🌺 ",
     "Plan smarter, travel happier 😎 ",
+    "See the world, your way 🗺️ ",
 ];
 
 function Subtitle() {
