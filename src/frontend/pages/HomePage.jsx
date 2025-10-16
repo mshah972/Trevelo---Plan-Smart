@@ -5,6 +5,8 @@ import {ArrowUp, Loader, LogOut} from "lucide-react";
 import {Button} from "../components/ui/Button.jsx";
 import {Subtitle} from "../components/ui/Subtitle.jsx";
 import {PromptTips} from "../components/custom/PromptTips.jsx";
+import {ChatContainer} from "../components/custom/ChatContainer.jsx";
+import {sampleMessages} from "./sample-messages.jsx";
 // import { useChat } from "../../hooks/use-chat.js";
 // import {
 //     ChatContainer,
@@ -26,14 +28,15 @@ export default function HomePage() {
     //         const
     //     }
     // }, []);
-    let messages = "";
+    const containerRef = useRef(null);
+
     const logoURL = "https://firebasestorage.googleapis.com/v0/b/travel-mate-sm07.firebasestorage.app/o/travel-mate-logo.svg?alt=media&token=43abb583-1320-4935-934d-a51d8f94f179";
 
     return (
         <>
             <div className={"relative w-full min-h-svh"}>
                 <motion.div
-                    initial={{opacity:0}}
+                    initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: 0.7, delay: 1}}
                 >
@@ -48,7 +51,7 @@ export default function HomePage() {
 
 
                 <div className={"flex flex-col w-full min-h-svh items-center gap-7 justify-center pb-24 lg:pb-4"}>
-                    {messages?.length <= 0 && (
+                    {sampleMessages?.length <= 0 && (
                         <>
                             <motion.div
                                 initial={{opacity: 0, y: -32}}
@@ -76,19 +79,19 @@ export default function HomePage() {
                                         Ready to explore the world?
                                     </motion.h1>
 
-                                    <Subtitle />
+                                    <Subtitle/>
                                 </div>
                             </motion.div>
                         </>
                     )}
 
-                    {/*{messages?.length > 0 && (*/}
+                    {/*{sampleMessages?.length > 0 && (*/}
                     {/*    <div*/}
                     {/*        ref={containerRef}*/}
                     {/*        className="w-full h-full overflow-y-auto flex justify-center"*/}
                     {/*    >*/}
                     {/*        <div className="max-w-[752px] w-full px-4">*/}
-                    {/*            <ChatContainer messages={messages} containerRef={containerRef} />*/}
+                    {/*            <ChatContainer messages={sampleMessages} containerRef={containerRef} />*/}
                     {/*        </div>*/}
                     {/*    </div>*/}
                     {/*)}*/}
@@ -105,16 +108,18 @@ export default function HomePage() {
                         />
                     </motion.div>
 
-                    <motion.div
-                        initial={{opacity: 0, y: 10}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: 0}}
-                        transition={{duration: 0.7, delay: 0.4}}
-                        className="inline-block m-2"
-                        layout
-                    >
-                        <PromptTips />
-                    </motion.div>
+                    {sampleMessages?.length <= 0 && (
+                        <motion.div
+                            initial={{opacity: 0, y: 10}}
+                            animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, y: 0}}
+                            transition={{duration: 0.7, delay: 0.4}}
+                            className="inline-block m-2"
+                            layout
+                        >
+                            <PromptTips/>
+                        </motion.div>
+                    )}
                 </div>
             </div>
         </>
