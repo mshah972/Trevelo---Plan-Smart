@@ -40,7 +40,7 @@ export default function AuthForm({type = "signup"}) {
 
                                     {/* Header Text*/}
                                     <div className={"flex flex-col gap-2"}>
-                                        <h1 className={"font-normal text-xl"}>{setTitle(type)}</h1>
+                                        <h1 className={"font-medium text-2xl"}>{setTitle(type)}</h1>
                                         <p className={"font-light text-sm text-text-secondary "}>{setSubTitle(type)}</p>
                                     </div>
 
@@ -129,7 +129,7 @@ export default function AuthForm({type = "signup"}) {
                                     {/* Login Route */}
                                     <div className={`${type === "forgotpassword" ? "hidden" : "flex"} flex-row justify-center items-center w-full gap-1`}>
                                         <p className={"text-[12px] lg:text-sm text-text-secondary font-light"}>{type === "signup" ? "Already have an account?" : "Don't have an account?"}</p>
-                                        <a href={type === "signup" ? "/login" : "/"} className={"text-white/80 text-[12px] lg:text-sm hover:text-warning transition duration-400 cursor-pointer"}>{type === "signup" ? "Sign In" : "Sign Up"}</a>
+                                        <a href={type === "signup" ? "/login" : "/signup"} className={"text-white/80 text-[12px] lg:text-sm hover:text-warning transition duration-400 cursor-pointer"}>{type === "signup" ? "Sign In" : "Sign Up"}</a>
                                     </div>
 
                                     <div className={`${type === "forgotpassword" ? "flex" : "hidden"} flex-col justify-center items-center w-full`}>

@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useRef} from "react";
 import {motion} from "motion/react";
-import {PromptInputArea} from "../components/custom/PromptInputArea.jsx";
+import {PromptInputArea} from "../../../components/custom/PromptInputArea.jsx";
 import {ArrowUp, Loader, LogOut} from "lucide-react";
-import {Button} from "../components/ui/Button.jsx";
-import {Subtitle} from "../components/ui/Subtitle.jsx";
-import {PromptTips} from "../components/custom/PromptTips.jsx";
-import {ChatContainer} from "../components/custom/ChatContainer.jsx";
-import {sampleMessages} from "./sample-messages.jsx";
+import {Button} from "../../../components/ui/Button.jsx";
+import {Subtitle} from "../../../components/ui/Subtitle.jsx";
+import {PromptTips} from "../../../components/custom/PromptTips.jsx";
+import {ChatContainer} from "../../../components/custom/ChatContainer.jsx";
+import {sampleMessages} from "../../sample-messages.jsx";
 // import { useChat } from "../../hooks/use-chat.js";
 // import {
 //     ChatContainer,
