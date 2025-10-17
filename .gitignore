@@ -25,4 +25,5 @@ dist-ssr
 
 .env
 .env.firebase
-openai.js
+src/backend/scripts/openai.js
+src/backend/server.js

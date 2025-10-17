@@ -28,7 +28,7 @@ export default function AuthForm({type = "signup"}) {
                     {/* GRID: form + (xl) photo */}
                     <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-12 gap-6">
                         {/* LEFT: form (7/12 on xl) */}
-                        <div className={"xl:col-span-8 flex flex-col items-center"}>
+                        <div className={"xl:col-span-9 flex flex-col items-center"}>
                             <div className={"flex flex-col justify-center items-center min-w-full min-h-[90vh]"}>
                                 <div className={"flex flex-col gap-6 items-start max-w-md lg:w-[500px]"}>
                                     {/* Logo Placeholder */}
@@ -69,7 +69,7 @@ export default function AuthForm({type = "signup"}) {
                                         </div>
 
                                         {/* Email */}
-                                        <div className={"flex flex-col space-y-2"}>
+                                        <div className={"flex flex-col space-y-2 w-full"}>
                                             <label htmlFor={"email"} className={"text-sm"}>Email</label>
                                             <input id={"email"} name={"email"} type={"email"} autoComplete={"email"} placeholder={"Enter your email address"} value={userEmail} onChange={e => setUserEmail(e.target.value)} className={"text-sm font-light w-full p-2.5 rounded-lg ring-1 ring-muted focus:ring-2 focus:shadow-md focus:shadow-info/20 focus:inset-shadow-xs focus:inset-shadow-white/5 outline-none tracking-wide"} />
                                         </div>
@@ -151,7 +151,7 @@ export default function AuthForm({type = "signup"}) {
                             </div>
                         </div>
                         {/* RIGHT: Unsplash image (5/12 on xl) */}
-                        <div className="xl:col-span-4 hidden xl:block">
+                        <div className="xl:col-span-3 hidden xl:block">
                             <div className="h-[95vh] rounded-xl overflow-hidden ring-1 ring-muted/50 shadow-2xl">
                                 <div className="h-full w-full">
                                     <UnsplashComponent/>

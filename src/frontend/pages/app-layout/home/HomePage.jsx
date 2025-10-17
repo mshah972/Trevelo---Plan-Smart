@@ -32,22 +32,52 @@ export default function HomePage() {
 
     const logoURL = "https://firebasestorage.googleapis.com/v0/b/travel-mate-sm07.firebasestorage.app/o/travel-mate-logo.svg?alt=media&token=43abb583-1320-4935-934d-a51d8f94f179";
 
+    const handleGenerate = async (userParagraph) => {
+        try {
+            const res = await fetch("http://localhost:4000/api/itineraries/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    prompt: userParagraph,
+                    template: { id: "pmpt_68dc81a73320819780475f732dcef55509b3ed914f0bf0af", version: "11" }, // your template
+                    // OPTIONAL: if your template expects variables:
+                    // variables: { paragraph: userParagraph }
+                    // OPTIONAL knobs:
+                    // model: "gpt-5",
+                    // temperature: 0.5,
+                }),
+            });
+
+            const json = await res.json();
+            if (!json.ok) {
+                console.error("Generation failed:", json.error, json.details || "");
+                return;
+            }
+            console.log("Itinerary:", json.data);
+            // setPlan(json.data);  // <- store in state and render if you want
+        } catch (e) {
+            console.error("Network/Unexpected error:", e);
+        }
+    };
+
+
+
     return (
         <>
             <div className={"relative w-full min-h-svh"}>
-                <motion.div
-                    initial={{opacity: 0}}
-                    animate={{opacity: 1}}
-                    transition={{duration: 0.7, delay: 1}}
-                >
-                    <button
-                        className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black hover:cursor-pointer transition duration-300 p-2"}
-                        onClick={""}
-                        type="submit"
-                    >
-                        <LogOut color={"red"} className={"w-[16px] h-[16px]"}/>
-                    </button>
-                </motion.div>
+                {/*<motion.div*/}
+                {/*    initial={{opacity: 0}}*/}
+                {/*    animate={{opacity: 1}}*/}
+                {/*    transition={{duration: 0.7, delay: 1}}*/}
+                {/*>*/}
+                {/*    <button*/}
+                {/*        className={"group absolute top-5 right-8 z-50 rounded-full bg-elevated ring-1 ring-red-500 font-light text-xs hover:bg-white hover:text-black hover:cursor-pointer transition duration-300 p-2"}*/}
+                {/*        onClick={""}*/}
+                {/*        type="submit"*/}
+                {/*    >*/}
+                {/*        <LogOut color={"red"} className={"w-[16px] h-[16px]"}/>*/}
+                {/*    </button>*/}
+                {/*</motion.div>*/}
 
 
                 <div className={"flex flex-col w-full min-h-svh items-center gap-7 justify-center pb-24 lg:pb-4"}>
@@ -103,7 +133,7 @@ export default function HomePage() {
                         className={"w-full flex justify-center"}
                     >
                         <PromptInputArea
-                            onSubmit={""}
+                            onSubmit={handleGenerate}
                             className={"max-w-[752px] w-full px-2"}
                         />
                     </motion.div>
