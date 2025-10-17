@@ -34,7 +34,7 @@ export default function HomePage() {
 
     const handleGenerate = async (userParagraph) => {
         try {
-            const res = await fetch("http://trevelo.ai/api/itineraries/generate", {
+            const res = await fetch("https://trevelo.ai/api/itineraries/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
