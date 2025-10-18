@@ -23,7 +23,7 @@ export default async (req) => {
 
     // Health probe
     if (method === "GET" && path === "health") {
-        return json({ ok: true, service: "itinerary-api" });
+        return json({ ok: true, status: 200 });
     }
 
     // MAIN endpoint: accepts both `/api/itineraries/generate` and `/api/itineraries/generate/`

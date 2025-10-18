@@ -41,7 +41,7 @@ export default function HomePage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     prompt: userParagraph,
-                    template: { id: "pmpt_68dc81a73320819780475f732dcef55509b3ed914f0bf0af", version: "11" },
+                    template: { id: "pmpt_68dc81a73320819780475f732dcef55509b3ed914f0bf0af", version: "14" },
                 }),
             });
 
