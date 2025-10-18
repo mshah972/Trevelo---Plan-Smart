@@ -1,5 +1,5 @@
 // netlify/functions/api.mjs
-import {generateItineraryFromPrompt} from "../../src/backend/scripts/openai.js";
+import {generateItineraryFromPrompt} from "./_lib/openai.js";
 
 export default async (req) => {
     const url = new URL(req.url);

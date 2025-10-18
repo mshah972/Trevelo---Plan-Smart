@@ -1,4 +1,4 @@
-import {generateItineraryFromPrompt} from "./openai.js";
+import {generateItineraryFromPrompt} from "../../../netlify/functions/_lib/openai.js";
 
 const userPrompt = `
 We’re planning a 7-day high-budget trip to Mumbai and Vadodara in November 2025. We want to spend 2 days in vadodara 2 days in manali and also the mode of transportation is motorcycle. We love street food but I am vegetarian. Include must-try snacks.`;

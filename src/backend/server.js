@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import {generateItineraryFromPrompt} from "./scripts/openai.js";
+import {generateItineraryFromPrompt} from "../../netlify/functions/_lib/openai.js";
 
 dotenv.config();
 
