@@ -6,3 +6,10 @@ node_bundler = "esbuild"
 from = "/api/*"
 to   = "/.netlify/functions/api"
 status = 200
+force = true
+
+# keep this AFTER the /api/* rule
+[[redirects]]
+from = "/*"
+to   = "/index.html"
+status = 200

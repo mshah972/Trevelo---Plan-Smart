@@ -2,31 +2,47 @@
 import {generateItineraryFromPrompt} from "./_lib/openai.js";
 
 export default async (req) => {
+    // Normalize path: remove leading "/api/", collapse slashes, drop trailing slash
     const url = new URL(req.url);
-    // In Netlify Dev, req.url can include the full URL; in prod too.
-    // We want the path AFTER /api/
-    const path = url.pathname.replace(/^\/api\//, "");
+    let path = url.pathname.replace(/^\/+/, "");
+    if (path.startsWith("api/")) path = path.slice(4);
+    path = path.replace(/\/{2,}/g, "/").replace(/\/$/, "");
 
-    // Debug (temporarily)
-    console.log("[fn] method:", req.method, "path:", path);
+    const method = req.method.toUpperCase();
 
-    if (req.method === "GET" && path === "health") {
+    // TEMP: log what the function actually sees (check Netlify logs)
+    console.log("[fn] method:", method, "path:", path);
+
+    // Preflight for CORS (safe even if you don't use cookies)
+    if (method === "OPTIONS") {
+        return new Response(null, {
+            status: 204,
+            headers: corsHeaders(),
+        });
+    }
+
+    // Health probe
+    if (method === "GET" && path === "health") {
         return json({ ok: true, service: "itinerary-api" });
     }
 
-    if (req.method === "POST" && path === "itineraries/generate") {
+    // MAIN endpoint: accepts both `/api/itineraries/generate` and `/api/itineraries/generate/`
+    if (method === "POST" && path === "itineraries/generate") {
         const body = await req.json().catch(() => ({}));
-        const { prompt, template, variables, model, temperature } = body;
+        const { prompt, template, variables, model } = body;
 
-        if (!prompt?.trim()) return json({ ok:false, error:"Missing 'prompt'." }, 400);
+        if (!prompt?.trim())       return json({ ok:false, error:"Missing 'prompt'." }, 400);
         if (!template?.id || !template?.version)
             return json({ ok:false, error:"Missing 'template': { id, version }." }, 400);
 
         try {
             const data = await generateItineraryFromPrompt(prompt, {
                 model,
-                temperature,
-                promptTemplate: { id: template.id, version: template.version, ...(variables ? { variables } : {}) },
+                promptTemplate: {
+                    id: template.id,
+                    version: template.version,
+                    ...(variables ? { variables } : {}),
+                },
             });
             return json({ ok: true, data });
         } catch (err) {
@@ -43,6 +59,13 @@ export default async (req) => {
 function json(obj, status = 200) {
     return new Response(JSON.stringify(obj), {
         status,
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", ...corsHeaders() },
     });
+}
+function corsHeaders() {
+    return {
+        "access-control-allow-origin": "*",
+        "access-control-allow-methods": "GET,POST,OPTIONS",
+        "access-control-allow-headers": "content-type",
+    };
 }
