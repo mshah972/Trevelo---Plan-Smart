@@ -34,33 +34,79 @@ export default function HomePage() {
 
     const API = import.meta.env.VITE_API_BASE_URL;
 
+    // Call from your UI: await handleGenerate(userParagraph)
     const handleGenerate = async (userParagraph) => {
         try {
-            const res = await fetch(`/api/itineraries/generate`, {
+            // 1) Start background job
+            const startRes = await fetch("/api/itineraries/start", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    prompt: userParagraph
-                }),
+                body: JSON.stringify({ prompt: userParagraph }),
             });
 
-            const ct = res.headers.get("content-type") || "";
-            if (!res.ok) {
-                const msg = ct.includes("application/json") ? (await res.json()).error : await res.text();
-                throw new Error(`HTTP ${res.status}: ${msg}`);
+            const startCt = startRes.headers.get("content-type") || "";
+            if (!startRes.ok) {
+                const msg = startCt.includes("application/json") ? (await startRes.json()).error : await startRes.text();
+                throw new Error(`Start failed (HTTP ${startRes.status}): ${msg}`);
             }
 
-            const json = await res.json();
-            if (!json.ok) {
-                console.error("Generation failed:", json.error, json.details || "");
-                return;
+            const startJson = await startRes.json(); // { ok: true, jobId }
+            if (!startJson?.ok || !startJson?.jobId) {
+                throw new Error("Failed to start job (no jobId).");
             }
-            console.log("Itinerary:", json.data);
-            // setPlan(json.data);  // <- store in state and render if you want
+            const jobId = startJson.jobId;
+            console.log("[itinerary] started job:", jobId);
+
+            // 2) Poll until the job completes (or fails/timeout)
+            const startedAt = Date.now();
+            const POLL_INTERVAL_MS = 1200;     // 1.2s
+            const TIMEOUT_MS = 120000;         // 2 minutes safety timeout
+
+            // Optional: surface interim UI state here (e.g., spinner)
+            setIsLoading(true);
+
+            let result = null;
+            for (;;) {
+                // client-side timeout guard
+                if (Date.now() - startedAt > TIMEOUT_MS) {
+                    throw new Error("Timed out waiting for itinerary. Please try a shorter prompt.");
+                }
+
+                await new Promise(r => setTimeout(r, POLL_INTERVAL_MS));
+
+                const statusRes = await fetch(`/api/jobs/${jobId}`, { method: "GET" });
+                const statusCt = statusRes.headers.get("content-type") || "";
+                if (!statusRes.ok) {
+                    const msg = statusCt.includes("application/json") ? (await statusRes.json()).error : await statusRes.text();
+                    throw new Error(`Status check failed (HTTP ${statusRes.status}): ${msg}`);
+                }
+
+                const { job } = await statusRes.json(); // { status, data?, error? }
+                if (!job) throw new Error("Invalid job response.");
+
+                if (job.status === "completed") {
+                    result = job.data;
+                    break;
+                }
+                if (job.status === "failed") {
+                    throw new Error(job.error || "Itinerary generation failed.");
+                }
+
+                // statuses: queued | running → continue polling
+                console.debug("[itinerary] job status:", job.status);
+            }
+
+            console.log("Itinerary:", result);
+            // setPlan(result); // ← store to state and render
+
         } catch (e) {
-            console.error("Network/Unexpected error:", e);
+            console.error("Network/Unexpected error:", e.message || e);
+            // Optionally show a toast/snackbar here
+        } finally {
+            // setIsLoading(false);
         }
     };
+
 
 
 

@@ -263,7 +263,7 @@ export async function generateItineraryFromPrompt(userInput) {
                     type: "json_schema",
                     name: "trip_plan_no_hotels",
                     strict: true,
-                    schema: tripPlanJsonSchema, // your raw JSON schema defined above
+                    schema: tripPlanJsonSchema,
                 },
                 verbosity: "medium",
             },
