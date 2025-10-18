@@ -20,7 +20,7 @@ const ItinerarySchema = z.object({
                 .describe("Short 3 to 4 sentences about things will be doing in proper English sentences"),
             activities: z.array(
                 z.object({
-                    timeOfDay: z.enum(["Morning", "Afternoon", "Evening"])
+                    timeOfDay: z.enum(["Morning", "Afternoon", "Evening", "Night"])
                         .describe("Time segment of the activity."),
                     location: z.string()
                         .describe("The name of the place, landmark, or a specific address. Main venue or restaurant name only."),
@@ -99,7 +99,7 @@ const tripPlanJsonSchema = {
                             properties: {
                                 timeOfDay: {
                                     type: "string",
-                                    enum: ["Morning", "Afternoon", "Evening"],
+                                    enum: ["Morning", "Afternoon", "Evening", "Night"],
                                     description: "Time segment of the activity"
                                 },
                                 location: {type: "string", description: "Main venue or restaurant name only"},
