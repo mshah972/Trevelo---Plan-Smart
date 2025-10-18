@@ -40,8 +40,7 @@ export default function HomePage() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    prompt: userParagraph,
-                    template: { id: "pmpt_68dc81a73320819780475f732dcef55509b3ed914f0bf0af", version: "14" },
+                    prompt: userParagraph
                 }),
             });
 

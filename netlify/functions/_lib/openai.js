@@ -230,18 +230,13 @@ const tripPlanJsonSchema = {
     additionalProperties: false
 };
 
-export async function generateItineraryFromPrompt(userInput, opts = {}) {
+export async function generateItineraryFromPrompt(userInput) {
     console.log("--------------------");
     console.log("Attempting to generate itinerary");
 
     if (typeof userInput !== "string" || userInput.trim().length === 0) {
         throw new Error("Prompt must be a non-empty string.");
     }
-
-    const {
-        model = "gpt-5",
-        prompt: promptRef,
-    } = opts;
 
     // Build messages: one system, one user (your paragraph)
     const messages = [
@@ -258,9 +253,11 @@ export async function generateItineraryFromPrompt(userInput, opts = {}) {
 
     try {
         const response = await openai.responses.parse({
-            model,
+            prompt: {
+                "id": "pmpt_68dc81a73320819780475f732dcef55509b3ed914f0bf0af",
+                "version": "14"
+            },
             input: messages,
-            ...(promptRef ? {prompt: promptRef} : {}), // include your prompt template only if provided
             text: {
                 format: {
                     type: "json_schema",

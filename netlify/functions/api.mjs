@@ -29,21 +29,12 @@ export default async (req) => {
     // MAIN endpoint: accepts both `/api/itineraries/generate` and `/api/itineraries/generate/`
     if (method === "POST" && path === "itineraries/generate") {
         const body = await req.json().catch(() => ({}));
-        const { prompt, template, variables, model } = body;
+        const { prompt } = body;
 
         if (!prompt?.trim())       return json({ ok:false, error:"Missing 'prompt'." }, 400);
-        if (!template?.id || !template?.version)
-            return json({ ok:false, error:"Missing 'template': { id, version }." }, 400);
 
         try {
-            const data = await generateItineraryFromPrompt(prompt, {
-                model,
-                promptTemplate: {
-                    id: template.id,
-                    version: template.version,
-                    ...(variables ? { variables } : {}),
-                },
-            });
+            const data = await generateItineraryFromPrompt(prompt);
             return json({ ok: true, data });
         } catch (err) {
             if (err?.code === "ZOD_VALIDATION_ERROR") return json({ ok:false, error: err.message, details: err.details }, 400);
