@@ -36,7 +36,7 @@ export default function HomePage() {
 
     const handleGenerate = async (userParagraph) => {
         try {
-            const res = await fetch(`${API}/api/itineraries/generate`, {
+            const res = await fetch(`/api/itineraries/generate`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

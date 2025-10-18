@@ -1,0 +1,9 @@
+[functions]
+directory = "netlify/functions"   # where your .mjs lives
+node_bundler = "esbuild"          # bundle ESM deps automatically
+
+# Pretty /api/* path that maps to functions
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200

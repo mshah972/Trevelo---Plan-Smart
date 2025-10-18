@@ -27,3 +27,5 @@ dist-ssr
 .env.firebase
 src/backend/scripts/openai.js
 src/backend/server.js
+# Local Netlify folder
+.netlify
