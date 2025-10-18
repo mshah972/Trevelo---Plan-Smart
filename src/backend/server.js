@@ -15,6 +15,7 @@ app.use(cors({
     origin: FRONTEND_ORIGIN,
     credentials: true, // set to true only if you’ll send cookies/auth
 }));
+app.use(cors({ origin: ["https://trevelo.ai", "https://www.trevelo.ai"] }));
 
 // ----- Baseline hardening & JSON parsing -----
 app.use(helmet());
