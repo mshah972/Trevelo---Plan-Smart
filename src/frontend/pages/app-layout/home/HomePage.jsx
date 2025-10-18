@@ -32,9 +32,11 @@ export default function HomePage() {
 
     const logoURL = "https://firebasestorage.googleapis.com/v0/b/travel-mate-sm07.firebasestorage.app/o/travel-mate-logo.svg?alt=media&token=43abb583-1320-4935-934d-a51d8f94f179";
 
+    const API = import.meta.env.VITE_API_BASE_URL;
+
     const handleGenerate = async (userParagraph) => {
         try {
-            const res = await fetch("https://trevelo.ai/api/itineraries/generate", {
+            const res = await fetch(`${API}/api/itineraries/generate`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -47,6 +49,12 @@ export default function HomePage() {
                     // temperature: 0.5,
                 }),
             });
+
+            const ct = res.headers.get("content-type") || "";
+            if (!res.ok) {
+                const msg = ct.includes("application/json") ? (await res.json()).error : await res.text();
+                throw new Error(`HTTP ${res.status}: ${msg}`);
+            }
 
             const json = await res.json();
             if (!json.ok) {
