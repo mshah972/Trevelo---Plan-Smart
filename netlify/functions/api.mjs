@@ -1,8 +1,15 @@
-// excerpt from your router; keep your existing helpers/utilities
 import { getStore } from "@netlify/blobs";
 import crypto from "node:crypto";
 
 const store = getStore({ name: "jobs" });
+
+// small helpers so the rest of the code stays clean
+async function readJob(id) {
+    return await store.get(id, { type: "json" }); // returns parsed JSON or null
+}
+async function writeJob(id, obj) {
+    await store.set(id, JSON.stringify(obj), { contentType: "application/json" });
+}
 
 export default async (req) => {
     const url = new URL(req.url);
@@ -11,22 +18,24 @@ export default async (req) => {
     path = path.replace(/\/{2,}/g, "/").replace(/\/$/, "");
     const method = req.method.toUpperCase();
 
+    if (method === "GET" && path === "health") {
+        return json({ ok: true, service: "itinerary-api" });
+    }
+
+    // POST /api/itineraries/start
     if (method === "POST" && path === "itineraries/start") {
         const body = await req.json().catch(() => ({}));
         const { prompt } = body;
-
-        if (!prompt?.trim()) {
-            return json({ ok: false, error: "Missing 'prompt'." }, 400);
-        }
+        if (!prompt?.trim()) return json({ ok:false, error:"Missing 'prompt'." }, 400);
 
         const jobId = crypto.randomUUID();
-        await store.setJSON(jobId, {
+        await writeJob(jobId, {
             status: "queued",
             createdAt: Date.now(),
             prompt: prompt.trim(),
         });
 
-        // kick off background worker
+        // trigger background worker
         await fetch(`${url.origin}/.netlify/functions/itineraries-generate-background`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -36,16 +45,15 @@ export default async (req) => {
         return json({ ok: true, jobId }, 202);
     }
 
-    // polling route: GET /api/jobs/:id  (unchanged)
+    // GET /api/jobs/:id
     const m = path.match(/^jobs\/([a-f0-9-]+)$/i);
     if (method === "GET" && m) {
-        const rec = await store.getJSON(m[1]);
-        if (!rec) return json({ ok: false, error: "Job not found" }, 404);
-        return json({ ok: true, job: rec });
+        const job = await readJob(m[1]);
+        if (!job) return json({ ok:false, error:"Job not found" }, 404);
+        return json({ ok:true, job });
     }
 
-    // optional: keep your /api/health and other routes...
-    return json({ ok: false, error: "Not found" }, 404);
+    return json({ ok:false, error:"Not found" }, 404);
 };
 
 function json(obj, status = 200) {
