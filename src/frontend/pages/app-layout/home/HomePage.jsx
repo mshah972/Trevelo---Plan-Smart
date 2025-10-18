@@ -63,7 +63,7 @@ export default function HomePage() {
             const TIMEOUT_MS = 120000;         // 2 minutes safety timeout
 
             // Optional: surface interim UI state here (e.g., spinner)
-            setIsLoading(true);
+            // setIsLoading(true);
 
             let result = null;
             for (;;) {
