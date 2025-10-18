@@ -1,5 +1,5 @@
 // netlify/functions/itineraries-generate.mjs
-import {generateItineraryFromPrompt} from "../../src/backend/scripts/openai.js";
+import {generateItineraryFromPrompt} from "Travel-Mate/src/backend/scripts/openai.js";
 
 export default async (req) => {
     try {
