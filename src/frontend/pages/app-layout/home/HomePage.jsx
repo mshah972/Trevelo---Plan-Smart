@@ -37,6 +37,8 @@ export default function HomePage() {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [plan, setPlan] = useState();
+
     // Call from your UI: await handleGenerate(userParagraph)
     const handleGenerate = async (userParagraph) => {
         try {
@@ -100,7 +102,7 @@ export default function HomePage() {
             }
 
             console.log("Itinerary:", result);
-            // setPlan(result); // ← store to state and render
+            setPlan(result); // ← store to state and render
 
         } catch (e) {
             console.error("Network/Unexpected error:", e.message || e);
@@ -176,6 +178,10 @@ export default function HomePage() {
                     {/*        </div>*/}
                     {/*    </div>*/}
                     {/*)}*/}
+
+                    <div>
+                        <p>{plan}</p>
+                    </div>
 
                     <motion.div
                         initial={{ opacity: 0, y: -32 }}
