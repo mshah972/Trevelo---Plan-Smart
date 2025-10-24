@@ -181,15 +181,18 @@ export default function HomePage() {
                         initial={{opacity: 0, y: -32}}
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 0.7, delay: 0.2}}
-                        className={"w-full flex justify-center"}
+                        className={"w-full flex flex-col justify-center"}
                     >
-                        <div className={`${isLoading ? "flex" : "hidden"}`}>
-                            <LoadingDotsAnimation />
+                        <div className={`${isLoading ? "flex" : "hidden"} flex-row gap-2 max-w-[752px] w-full justify-center mb-4`}>
+                            <p className={"font-light text-text-secondary text-sm space-x-2 italic"}>Thinking</p><LoadingDotsAnimation />
                         </div>
-                        <PromptInputArea
-                            onSubmit={handleGenerate}
-                            className={"max-w-[752px] w-full px-2"}
-                        />
+
+                        <div className={"w-full justify-center flex"}>
+                            <PromptInputArea
+                                onSubmit={handleGenerate}
+                                className={"max-w-[752px] w-full px-2"}
+                            />
+                        </div>
                     </motion.div>
 
                     {sampleMessages?.length <= 0 && (
