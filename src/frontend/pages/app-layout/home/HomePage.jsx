@@ -7,6 +7,7 @@ import {Subtitle} from "../../../components/ui/Subtitle.jsx";
 import {PromptTips} from "../../../components/custom/PromptTips.jsx";
 import {ChatContainer} from "../../../components/custom/ChatContainer.jsx";
 import {sampleMessages} from "../../sample-messages.jsx";
+import LoadingDotsAnimation from "../../../components/ui/DotsAnimation.jsx";
 // import { useChat } from "../../hooks/use-chat.js";
 // import {
 //     ChatContainer,
@@ -33,6 +34,8 @@ export default function HomePage() {
     const logoURL = "https://firebasestorage.googleapis.com/v0/b/travel-mate-sm07.firebasestorage.app/o/travel-mate-logo.svg?alt=media&token=43abb583-1320-4935-934d-a51d8f94f179";
 
     const API = import.meta.env.VITE_API_BASE_URL;
+
+    const [isLoading, setIsLoading] = useState(false);
 
     // Call from your UI: await handleGenerate(userParagraph)
     const handleGenerate = async (userParagraph) => {
@@ -63,7 +66,7 @@ export default function HomePage() {
             const TIMEOUT_MS = 300000;         // 5 minutes safety timeout
 
             // Optional: surface interim UI state here (e.g., spinner)
-            // setIsLoading(true);
+            setIsLoading(true);
 
             let result = null;
             for (;;) {
@@ -103,7 +106,7 @@ export default function HomePage() {
             console.error("Network/Unexpected error:", e.message || e);
             // Optionally show a toast/snackbar here
         } finally {
-            // setIsLoading(false);
+            setIsLoading(false);
         }
     };
 
@@ -180,6 +183,9 @@ export default function HomePage() {
                         transition={{duration: 0.7, delay: 0.2}}
                         className={"w-full flex justify-center"}
                     >
+                        <div className={`${isLoading ? "flex" : "hidden"}`}>
+                            <LoadingDotsAnimation />
+                        </div>
                         <PromptInputArea
                             onSubmit={handleGenerate}
                             className={"max-w-[752px] w-full px-2"}
