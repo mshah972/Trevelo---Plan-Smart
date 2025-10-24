@@ -60,7 +60,7 @@ export default function HomePage() {
             // 2) Poll until the job completes (or fails/timeout)
             const startedAt = Date.now();
             const POLL_INTERVAL_MS = 1200;     // 1.2s
-            const TIMEOUT_MS = 120000;         // 2 minutes safety timeout
+            const TIMEOUT_MS = 300000;         // 5 minutes safety timeout
 
             // Optional: surface interim UI state here (e.g., spinner)
             // setIsLoading(true);
