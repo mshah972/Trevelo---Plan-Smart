@@ -17,11 +17,11 @@ function LoadingDotsAnimation() {
         <motion.div
             animate="jump"
             transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
-            className="container"
+            className="flex justify-center items-center gap-10"
         >
-            <motion.div className="dot" variants={dotVariants} />
-            <motion.div className="dot" variants={dotVariants} />
-            <motion.div className="dot" variants={dotVariants} />
+            <motion.div className="w-8 h-8 rounded-full bg-muted transform" variants={dotVariants} />
+            <motion.div className="w-8 h-8 rounded-full bg-muted transform" variants={dotVariants} />
+            <motion.div className="w-8 h-8 rounded-full bg-muted transform" variants={dotVariants} />
         </motion.div>
     );
 }
